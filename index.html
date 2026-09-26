@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Facebook Auto Publisher</title>
+<style>
+:root{--bg:#0b1020;--card:#141b2d;--card2:#1a2338;--text:#f5f7fb;--muted:#9aa6bd;--line:#2a3652;--accent:#55d6a6;--danger:#ff6b6b;--blue:#6ca8ff;--warn:#ffc857}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.wrap{max-width:900px;margin:auto;padding:16px 14px 90px}h1{font-size:1.35rem;margin:4px 0}.sub{color:var(--muted);font-size:.82rem}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.badge{padding:8px 12px;border-radius:999px;font-weight:800;font-size:.78rem;background:#2a2030;color:#bbb;border:1px solid #4a4050}.badge.on{background:#123326;color:#72e8b8;border-color:#2b805f}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:sticky;top:0;background:rgba(11,16,32,.94);backdrop-filter:blur(8px);z-index:5;padding:8px 0}.tab{border:1px solid var(--line);background:var(--card);color:var(--muted);padding:12px;border-radius:12px;font-weight:800}.tab.active{background:var(--accent);color:#07150f;border-color:var(--accent)}.page{display:none}.page.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}.title{font-weight:850;margin-bottom:9px}.row{display:flex;gap:8px;align-items:center}.row>*{min-width:0}input,select{width:100%;background:#0e1526;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:12px;font-size:.95rem}button{cursor:pointer}.btn{border:0;border-radius:10px;padding:11px 14px;font-weight:850;background:var(--accent);color:#06140f}.btn.secondary{background:var(--card2);color:var(--text);border:1px solid var(--line)}.btn.danger{background:#35191e;color:#ff9696;border:1px solid #6c2c36}.btn.blue{background:#17345f;color:#9bc5ff;border:1px solid #285795}.btn:disabled{opacity:.45;cursor:not-allowed}.days{display:flex;gap:7px;overflow:auto;padding-bottom:4px}.day{white-space:nowrap;border:1px solid var(--line);background:var(--card2);color:var(--muted);padding:9px 12px;border-radius:999px;font-weight:750}.day.active{background:var(--blue);color:#081326;border-color:var(--blue)}.schedule{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:8px}.scheduleTop{display:flex;align-items:center;justify-content:space-between;gap:8px}.time{font-size:1.05rem;font-weight:900}.small{font-size:.78rem;color:var(--muted)}.linkrow{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #202b43}.linkrow:last-child{border-bottom:0}.url{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#c8d4eb;font-size:.82rem}.eye{width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:white;font-size:1rem}.trash{width:38px;height:38px;border-radius:9px;border:1px solid #60323a;background:#321a1f;color:#ff8c99}.check{width:20px;height:20px;accent-color:var(--accent)}.status{padding:10px;border-radius:10px;background:#0e1526;color:var(--muted);font-size:.82rem;margin-top:10px}.history{font-size:.78rem}.hist{padding:9px 0;border-bottom:1px solid #202b43}.ok{color:#72e8b8}.err{color:#ff8f8f}.modalBack{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:20;padding:16px;overflow:auto}.modalBack.open{display:flex;align-items:flex-start;justify-content:center}.modal{width:min(700px,100%);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:4vh 0}.modal h2{margin:0 0 12px;font-size:1.15rem}.previewImg{width:100%;max-height:300px;object-fit:cover;border-radius:12px;background:#000}.previewTitle{font-weight:850;margin:10px 0}.toolbar{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.count{font-size:.82rem;color:var(--muted);margin-left:auto}.notice{font-size:.78rem;color:var(--warn);line-height:1.45}.empty{color:var(--muted);font-size:.85rem;padding:12px 0}.switch{display:flex;gap:10px;align-items:center;justify-content:space-between}.bigOn{min-width:110px}.progress{margin-top:8px;font-size:.8rem;color:#b8c6de}@media(max-width:520px){.wrap{padding:12px 10px 86px}.linkrow{grid-template-columns:auto 1fr auto auto}.btn{padding:11px 10px}.card{padding:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><h1>📣 Facebook Auto Publisher</h1><div class="sub">Video YouTube → 4 Pagine Facebook</div></div><div id="conn" class="badge">Connessione…</div></div>
+  <div class="tabs"><button class="tab active" data-page="program">📅 Programmazione</button><button class="tab" data-page="manual">🔗 Pubblica link</button></div>
+
+  <section id="program" class="page active">
+    <div class="card">
+      <div class="title">➕ Aggiungi video YouTube</div>
+      <div class="row"><input id="newUrl" type="url" placeholder="Incolla il link YouTube"><button class="btn" id="addVideo">Aggiungi</button></div>
+      <div id="addStatus" class="status" style="display:none"></div>
+    </div>
+
+    <div class="card">
+      <div class="switch"><div><div class="title" style="margin:0">⚙️ Programmazione automatica</div><div class="small">Funziona anche con PC e telefono chiusi</div></div><button id="toggleProgramming" class="btn secondary bigOn">OFF</button></div>
+      <div class="row" style="margin-top:12px"><div style="flex:1"><div class="small" style="margin-bottom:5px">Pausa tra un video e il successivo</div><select id="pause"><option value="10">10 secondi</option><option value="20">20 secondi</option><option value="30">30 secondi</option><option value="45">45 secondi</option><option value="60">1 minuto</option><option value="120">2 minuti</option><option value="300">5 minuti</option></select></div></div>
+      <div id="jobProgress" class="progress"></div>
+    </div>
+
+    <div class="card">
+      <div class="title">📆 Giorno</div>
+      <div class="days" id="days"></div>
+      <div class="row" style="margin-top:12px"><button id="addSchedule" class="btn">＋ Orario</button></div>
+      <div id="scheduleList"></div>
+    </div>
+
+    <div class="card">
+      <div class="title">🎵 Elenco video <span id="videoCount" class="small"></span></div>
+      <div class="toolbar"><button class="btn secondary" id="selectLast20">✓ Ultimi 20</button><button class="btn secondary" id="clearMain">Deseleziona tutti</button><button class="btn blue" id="publishNow">▶ Pubblica selezionati ora</button></div>
+      <div id="videoList"></div>
+    </div>
+
+    <div class="card"><div class="title">📋 Storico</div><div id="history" class="history"></div></div>
+  </section>
+
+  <section id="manual" class="page">
+    <div class="card"><div class="title">🔗 Pubblica un link sulle 4 Pagine</div><div class="small" style="margin-bottom:10px">Puoi inserire un prodotto eBay o qualsiasi altro link web.</div><input id="manualUrl" type="url" placeholder="https://..."><button id="manualPublish" class="btn" style="width:100%;margin-top:10px">📤 Pubblica ora</button><div id="manualStatus" class="status" style="display:none"></div></div>
+  </section>
+</div>
+
+<div id="scheduleModal" class="modalBack"><div class="modal"><h2 id="scheduleModalTitle">Nuovo orario</h2><div class="row"><input id="scheduleTime" type="time" value="09:00"></div><div class="toolbar"><button class="btn secondary" id="modalLast20">✓ Seleziona ultimi 20</button><button class="btn secondary" id="modalClear">Deseleziona tutti</button><span class="count" id="modalCount"></span></div><div id="modalVideos"></div><div class="row" style="margin-top:14px"><button class="btn secondary" id="cancelSchedule">Annulla</button><button class="btn" id="saveSchedule" style="flex:1">💾 Salva orario</button></div></div></div>
+<div id="previewModal" class="modalBack"><div class="modal"><h2>👁️ Anteprima video</h2><img id="previewImg" class="previewImg" alt="Miniatura"><div id="previewTitle" class="previewTitle"></div><div class="row"><button class="btn secondary" id="closePreview">Chiudi</button><a id="openYoutube" class="btn" style="text-decoration:none;text-align:center;flex:1" target="_blank" rel="noopener">Apri su YouTube</a></div></div></div>
+
+<script>
+const API='https://facebook-auto-publisher.carminefascion1.workers.dev';
+let state={videos:[],schedules:[],programmingOn:false,pauseSeconds:30,history:[],activeJob:null,queuedJobs:0};
+let currentDay={scope:'today',date:localDate()}; let editingSchedule=null;
+const DAY_DEFS=[{k:'today',label:'Oggi'},{k:'daily',label:'Tutti i giorni'},{k:'weekday',w:1,label:'Lunedì'},{k:'weekday',w:2,label:'Martedì'},{k:'weekday',w:3,label:'Mercoledì'},{k:'weekday',w:4,label:'Giovedì'},{k:'weekday',w:5,label:'Venerdì'},{k:'weekday',w:6,label:'Sabato'},{k:'weekday',w:7,label:'Domenica'}];
+function localDate(){const d=new Date(),y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),x=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${x}`}
+async function api(path,opt={}){const r=await fetch(API+path,{headers:{'Content-Type':'application/json',...(opt.headers||{})},...opt});let d;try{d=await r.json()}catch{d={ok:false,error:'Risposta non valida dal Worker'}}if(!r.ok||d.ok===false)throw new Error(d.error||'Errore');return d}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function shortUrl(u){return u.length>52?u.slice(0,49)+'…':u}
+function fmtDate(iso){try{return new Date(iso).toLocaleString('it-IT',{dateStyle:'short',timeStyle:'short'})}catch{return iso}}
+async function load(){try{const d=await api('/api/state');state=d;document.getElementById('conn').textContent='● Online';document.getElementById('conn').classList.add('on');renderAll()}catch(e){document.getElementById('conn').textContent='● Worker da configurare';document.getElementById('conn').classList.remove('on');console.error(e)}}
+function renderAll(){renderDays();renderSchedules();renderVideos();renderSettings();renderHistory()}
+function renderSettings(){const b=document.getElementById('toggleProgramming');b.textContent=state.programmingOn?'✅ ON':'⏸️ OFF';b.className='btn bigOn '+(state.programmingOn?'':'secondary');document.getElementById('pause').value=String(state.pauseSeconds||30);const p=document.getElementById('jobProgress');p.textContent=state.activeJob?`⏳ In corso: ${state.activeJob.label} — ${Math.min(state.activeJob.index+1,state.activeJob.total)}/${state.activeJob.total}`:(state.queuedJobs?`⏳ ${state.queuedJobs} ciclo/i in attesa`:'Nessuna pubblicazione in corso.')}
+function isCurrentDef(d){if(d.k!==currentDay.scope)return false;if(d.k==='weekday')return d.w===currentDay.weekday;return true}
+function renderDays(){document.getElementById('days').innerHTML=DAY_DEFS.map((d,i)=>`<button class="day ${isCurrentDef(d)?'active':''}" onclick="chooseDay(${i})">${d.label}</button>`).join('')}
+window.chooseDay=i=>{const d=DAY_DEFS[i];currentDay=d.k==='today'?{scope:'today',date:localDate()}:d.k==='daily'?{scope:'daily'}:{scope:'weekday',weekday:d.w};renderDays();renderSchedules()}
+function scheduleBelongs(s){if(s.scope!==currentDay.scope)return false;if(s.scope==='today')return s.date===currentDay.date;if(s.scope==='weekday')return s.weekday===currentDay.weekday;return true}
+function renderSchedules(){const list=state.schedules.filter(scheduleBelongs).sort((a,b)=>a.time.localeCompare(b.time));document.getElementById('scheduleList').innerHTML=list.length?list.map(s=>`<div class="schedule"><div class="scheduleTop"><div><div class="time">🕐 ${esc(s.time)}</div><div class="small">${s.videoIds.length} video selezionati</div></div><div class="row"><button class="eye" onclick="editSchedule('${s.id}')" title="Modifica">✏️</button><button class="trash" onclick="deleteSchedule('${s.id}')" title="Elimina">🗑️</button></div></div></div>`).join(''):'<div class="empty">Nessun orario salvato per questa scelta.</div>'}
+function videoRow(v,checked=false,mode='main'){return `<div class="linkrow"><input class="check ${mode==='modal'?'modalCheck':'mainCheck'}" type="checkbox" value="${v.id}" ${checked?'checked':''}><div class="url" title="${esc(v.url)}">${esc(shortUrl(v.url))}</div><button class="eye" onclick="previewVideo('${v.id}')">👁️</button>${mode==='main'?`<button class="trash" onclick="deleteVideo('${v.id}')">🗑️</button>`:'<span></span>'}</div>`}
+function renderVideos(){document.getElementById('videoCount').textContent=`(${state.videos.length})`;document.getElementById('videoList').innerHTML=state.videos.length?state.videos.slice().reverse().map(v=>videoRow(v,false,'main')).join(''):'<div class="empty">Nessun video ancora. Incolla il primo link YouTube qui sopra.</div>'}
+function last20Ids(){return new Set(state.videos.slice(-20).map(v=>v.id))}
+function setChecks(cls,ids){document.querySelectorAll('.'+cls).forEach(c=>c.checked=ids.has(c.value));if(cls==='modalCheck')updateModalCount()}
+function checkedIds(cls){return [...document.querySelectorAll('.'+cls+':checked')].map(c=>c.value)}
+function updateModalCount(){document.getElementById('modalCount').textContent=`${checkedIds('modalCheck').length} selezionati`}
+function renderHistory(){const h=state.history||[];document.getElementById('history').innerHTML=h.length?h.slice(0,40).map(x=>{if(x.type==='job-finished')return `<div class="hist ok">✅ ${esc(x.label)} completato — ${x.total} video <span class="small">${fmtDate(x.at)}</span></div>`;if(x.type==='system')return `<div class="hist err">❌ Sistema: ${esc(x.error)} <span class="small">${fmtDate(x.at)}</span></div>`;const ok=x.result?.successPages?.length||0,er=x.result?.errors?.length||0;return `<div class="hist"><span class="${ok?'ok':'err'}">${ok?'✅':'❌'} ${ok}/4 pagine</span>${er?` · <span class="err">${er} errori</span>`:''}<div class="small">${esc(x.title||x.link||x.label||'')} · ${fmtDate(x.at)}</div></div>`}).join(''):'<div class="empty">Nessuna pubblicazione ancora.</div>'}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.page).classList.add('active')});
+document.getElementById('addVideo').onclick=async()=>{const el=document.getElementById('newUrl'),st=document.getElementById('addStatus');const url=el.value.trim();if(!url)return;st.style.display='block';st.textContent='⏳ Recupero titolo e miniatura…';try{await api('/api/videos',{method:'POST',body:JSON.stringify({url})});el.value='';st.textContent='✅ Video aggiunto';await load()}catch(e){st.textContent='❌ '+e.message}}
+window.deleteVideo=async id=>{if(!confirm('Eliminare questo video dall’elenco? Verrà tolto anche dagli orari in cui era selezionato.'))return;try{await api('/api/videos/'+encodeURIComponent(id),{method:'DELETE'});await load()}catch(e){alert(e.message)}}
+window.previewVideo=id=>{const v=state.videos.find(x=>x.id===id);if(!v)return;document.getElementById('previewImg').src=v.thumbnail||`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`;document.getElementById('previewTitle').textContent=v.title||'Titolo non disponibile';document.getElementById('openYoutube').href=v.url;document.getElementById('previewModal').classList.add('open')}
+document.getElementById('closePreview').onclick=()=>document.getElementById('previewModal').classList.remove('open');
+document.getElementById('selectLast20').onclick=()=>setChecks('mainCheck',last20Ids());document.getElementById('clearMain').onclick=()=>setChecks('mainCheck',new Set());
+document.getElementById('publishNow').onclick=async()=>{const ids=checkedIds('mainCheck');if(!ids.length)return alert('Seleziona almeno un video.');if(!confirm(`Pubblicare adesso ${ids.length} video sulle 4 pagine?`))return;try{await api('/api/publish-now',{method:'POST',body:JSON.stringify({videoIds:ids})});alert('Ciclo inserito in coda. Partirà automaticamente.');await load()}catch(e){alert(e.message)}}
+
+document.getElementById('toggleProgramming').onclick=async()=>{try{await api('/api/settings',{method:'POST',body:JSON.stringify({programmingOn:!state.programmingOn})});await load()}catch(e){alert(e.message)}}
+document.getElementById('pause').onchange=async e=>{try{await api('/api/settings',{method:'POST',body:JSON.stringify({pauseSeconds:Number(e.target.value)})});await load()}catch(er){alert(er.message)}}
+
+document.getElementById('addSchedule').onclick=()=>openSchedule(null);window.editSchedule=id=>openSchedule(state.schedules.find(s=>s.id===id));
+function openSchedule(s){editingSchedule=s||null;document.getElementById('scheduleModalTitle').textContent=s?'Modifica orario':'Nuovo orario';document.getElementById('scheduleTime').value=s?.time||'09:00';const ids=s?new Set(s.videoIds):last20Ids();document.getElementById('modalVideos').innerHTML=state.videos.length?state.videos.slice().reverse().map(v=>videoRow(v,ids.has(v.id),'modal')).join(''):'<div class="empty">Prima devi aggiungere almeno un video.</div>';document.getElementById('scheduleModal').classList.add('open');document.querySelectorAll('.modalCheck').forEach(c=>c.onchange=updateModalCount);updateModalCount()}
+document.getElementById('modalLast20').onclick=()=>setChecks('modalCheck',last20Ids());document.getElementById('modalClear').onclick=()=>setChecks('modalCheck',new Set());document.getElementById('cancelSchedule').onclick=()=>document.getElementById('scheduleModal').classList.remove('open');
+document.getElementById('saveSchedule').onclick=async()=>{const ids=checkedIds('modalCheck'),time=document.getElementById('scheduleTime').value;if(!ids.length)return alert('Seleziona almeno un video.');const body={id:editingSchedule?.id||null,...currentDay,time,videoIds:ids};try{await api('/api/schedules',{method:'POST',body:JSON.stringify(body)});document.getElementById('scheduleModal').classList.remove('open');await load()}catch(e){alert(e.message)}}
+window.deleteSchedule=async id=>{if(!confirm('Eliminare questo orario?'))return;try{await api('/api/schedules/'+encodeURIComponent(id),{method:'DELETE'});await load()}catch(e){alert(e.message)}}
+
+document.getElementById('manualPublish').onclick=async()=>{const el=document.getElementById('manualUrl'),st=document.getElementById('manualStatus'),url=el.value.trim();if(!url)return;st.style.display='block';st.textContent='⏳ Pubblicazione sulle 4 pagine…';try{const d=await api('/api/manual',{method:'POST',body:JSON.stringify({url})});const ok=d.result.successPages.length,er=d.result.errors.length;st.textContent=`${ok?'✅':'❌'} Pubblicato su ${ok}/4 pagine${er?' — '+er+' errori':''}`;if(ok)el.value='';await load()}catch(e){st.textContent='❌ '+e.message}}
+
+load();setInterval(load,15000);
+</script>
+</body></html>
